@@ -25,6 +25,17 @@ public class JogoResource {
 
         return Jogo.findAll().list();
     }
+    @GET
+    @Path("/{id}")
+    public Jogo get(@PathParam ("id") Long id) {
+
+        Jogo jogo = Jogo.findById(id);
+
+        if (jogo.isPersistent())        
+            return Jogo.findById(id);
+
+        return null;
+    }
 
     @POST // fazer uma inclusão
     @Produces(MediaType.APPLICATION_JSON) //
